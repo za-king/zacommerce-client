@@ -68,6 +68,16 @@ function ProductById() {
               autem doloremque libero illum error maiores numquam ullam
               voluptate. Enim, eos. Nihil, delectus optio. Suscipit tempora in
               aperiam fugiat? Fugit, beatae.
+              <br />
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
+              autem doloremque libero illum error maiores numquam ullam
+              voluptate. Enim, eos. Nihil, delectus optio. Suscipit tempora in
+              aperiam fugiat? Fugit, beatae.
+              <br />
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
+              autem doloremque libero illum error maiores numquam ullam
+              voluptate. Enim, eos. Nihil, delectus optio. Suscipit tempora in
+              aperiam fugiat? Fugit, beatae.
             </p>
 
             <div className="flex justify-between border rounded-lg p-2">
