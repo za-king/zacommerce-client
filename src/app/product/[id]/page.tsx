@@ -6,7 +6,7 @@ function ProductById() {
   return (
     <Layout>
       <div className="min-h-screen md:container py-12">
-        <div className="card  bg-primary text-primary-content p-12 shadow-xl grid grid-cols-3 justify-items-center items-center">
+        <div className="card    p-12 shadow-xl grid grid-cols-3 justify-items-center items-center">
           <div>
             <div className="w-96 carousel rounded-box">
               <div className="carousel-item w-full">
@@ -61,8 +61,10 @@ function ProductById() {
             </div>
           </div>
           <div className="h-full justify-between">
-            <div className="mb-12"><h1 className="text-xl font-bold">Product Title</h1>
-            <h2>RP.30.000</h2></div>
+            <div className="mb-12">
+              <h1 className="text-xl font-bold">Product Title</h1>
+              <h2>RP.30.000</h2>
+            </div>
             <p className="mb-12">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
               autem doloremque libero illum error maiores numquam ullam
@@ -94,7 +96,9 @@ function ProductById() {
               <button className="btn btn-active">Follow</button>
             </div>
           </div>
-          <div><CartComp/></div>
+          <div>
+            <CartComp />
+          </div>
         </div>
       </div>
     </Layout>

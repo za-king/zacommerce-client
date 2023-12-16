@@ -3,11 +3,7 @@ import Link from "next/link";
 const Card = () => {
   return (
     <Link href="/product/12">
-      
-      <div
-        className="card w-96 bg-base-100 shadow-xl cursor-pointer"
-        
-      >
+      <div className="card w-96 bg-base-100 shadow-xl cursor-pointer">
         <figure>
           <img
             src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -18,7 +14,7 @@ const Card = () => {
           <h2 className="card-title">Shoes!</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button className="btn btn-primary">Add to cart</button>
           </div>
         </div>
       </div>

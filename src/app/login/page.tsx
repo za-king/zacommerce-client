@@ -1,7 +1,16 @@
+"use client";
 import Layout from "@/components/Layout";
-
+import { useState } from "react";
+import { useLogin } from "../../hook/useLogin.hook";
+import { useRouter } from "next/navigation";
 
 function page() {
+  const [email, setEmail] = useState<string>("test2@gmail.com");
+  const [password, setPassword] = useState<string>("zaky1234");
+  const router = useRouter();
+  const handleClickLogin = () => {
+    useLogin({ email, password });
+  };
   return (
     <Layout>
       <div className="hero min-h-screen bg-base-200 ">
@@ -19,7 +28,7 @@ function page() {
                 className="input input-bordered w-full max-w-xs"
               />
             </form>
-            <button className="btn btn-neutral">
+            <button className="btn btn-neutral" onClick={handleClickLogin}>
               <span className="loading loading-spinner"></span>
               Login
             </button>
@@ -28,14 +37,6 @@ function page() {
               <span className="loading loading-spinner"></span>
               signin with google
             </button>
-          </div>
-        </div>
-        <div className="toast">
-          <div className="alert alert-info">
-            <span>New message arrived.</span>
-          </div>
-          <div className="alert alert-success">
-            <span>Message sent successfully.</span>
           </div>
         </div>
       </div>
