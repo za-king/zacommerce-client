@@ -1,4 +1,4 @@
-const CardCart = () => {
+const CardCart = ({ product }: any) => {
   return (
     <div className="card card-side bg-base-100 shadow-xl m-2">
       <figure>

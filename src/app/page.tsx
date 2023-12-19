@@ -1,8 +1,12 @@
+"use client";
 import Layout from "@/components/Layout";
 import Hero from "@/components/Hero";
 import Card from "@/components/Card";
 import CardCategory from "@/components/CardCategory";
+import useProductHook from "@/hook/useProductHook";
 export default function Home() {
+  const { productData } = useProductHook();
+
   return (
     <Layout>
       <div className="min-h-screen lg:container my-12">
@@ -15,11 +19,9 @@ export default function Home() {
           <CardCategory />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {productData.map((product: any, index: number) => {
+            return <Card product={product} key={index} />;
+          })}
         </div>
 
         <div className="carousel carousel-end rounded-box my-12">

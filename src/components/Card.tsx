@@ -1,24 +1,27 @@
-import Link from "next/link";
+"use client";
+import { CartContext } from "@/context/cart.context";
+import { useContext } from "react";
+const Card = ({ product }: any) => {
+  const { addToCart } = useContext(CartContext);
 
-const Card = () => {
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
   return (
-    <Link href="/product/12">
-      <div className="card w-96 bg-base-100 shadow-xl cursor-pointer">
-        <figure>
-          <img
-            src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-            alt="Shoes"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Add to cart</button>
-          </div>
+    <div className="card w-96 bg-base-100 shadow-xl cursor-pointer">
+      <figure>
+        <img src={product?.image} alt="Shoes" />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title">Shoes!</h2>
+        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <div className="card-actions justify-end">
+          <button className="btn btn-primary" onClick={handleAddToCart}>
+            Add to cart
+          </button>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
