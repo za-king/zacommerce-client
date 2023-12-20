@@ -2,10 +2,10 @@
 import { CartContext } from "@/context/cart.context";
 import { useContext } from "react";
 const Card = ({ product }: any) => {
-  const { addToCart } = useContext(CartContext);
+  const { addToCart }: any = useContext(CartContext);
 
-  const handleAddToCart = () => {
-    addToCart(product);
+  const handleAddToCart = async () => {
+    await addToCart(product);
   };
   return (
     <div className="card w-96 bg-base-100 shadow-xl cursor-pointer">
