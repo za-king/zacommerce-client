@@ -9,7 +9,7 @@ const Header = () => {
 
   const router = useRouter();
   return (
-    <div className="navbar bg-base-100 border-b-2">
+    <div className="navbar bg-base-100 border-b-2 fixed z-50 top-0">
       <div className="flex-none md:hidden">
         <div className="drawer z-50">
           <input id="my-drawer" type="checkbox" className="drawer-toggle" />

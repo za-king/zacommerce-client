@@ -1,103 +1,57 @@
+"use client";
 import CartComp from "@/components/CartComp";
 import Layout from "@/components/Layout";
-import React from "react";
-
+import { useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import useProductHook from "@/hook/useProductHook";
 function ProductById() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const { useGetByIdProduct, productByIdData } = useProductHook();
+
+  useEffect(() => {
+    const url = `${pathname}${searchParams}`;
+    useGetByIdProduct(url);
+  }, [pathname, searchParams]);
   return (
     <Layout>
-      <div className="min-h-screen md:container py-12">
-        <div className="card    p-12 shadow-xl grid grid-cols-3 justify-items-center items-center">
+      <div className="min-h-screen md:container py-20">
+        <div className=" p-12 shadow-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 justify-items-center items-center">
           <div>
             <div className="w-96 carousel rounded-box">
               <div className="carousel-item w-full">
                 <img
-                  src="https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg"
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg"
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg"
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg"
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.jpg"
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1559181567-c3190ca9959b.jpg"
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.jpg"
+                  src={productByIdData[0]?.image}
                   className="w-full"
                   alt="Tailwind CSS Carousel component"
                 />
               </div>
             </div>
           </div>
-          <div className="h-full justify-between">
+          <div className="p-4 w-full h-full ">
             <div className="mb-12">
-              <h1 className="text-xl font-bold">Product Title</h1>
-              <h2>RP.30.000</h2>
+              <h1 className="text-xl font-bold">{productByIdData[0]?.name}</h1>
+              <h2>RP{productByIdData[0]?.price}</h2>
             </div>
-            <p className="mb-12">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-              autem doloremque libero illum error maiores numquam ullam
-              voluptate. Enim, eos. Nihil, delectus optio. Suscipit tempora in
-              aperiam fugiat? Fugit, beatae.
-              <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-              autem doloremque libero illum error maiores numquam ullam
-              voluptate. Enim, eos. Nihil, delectus optio. Suscipit tempora in
-              aperiam fugiat? Fugit, beatae.
-              <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-              autem doloremque libero illum error maiores numquam ullam
-              voluptate. Enim, eos. Nihil, delectus optio. Suscipit tempora in
-              aperiam fugiat? Fugit, beatae.
-            </p>
+            <p className="mb-12">{productByIdData[0]?.description}</p>
 
             <div className="flex justify-between border rounded-lg p-2">
-              <div className="avatar online placeholder">
-                <div className="bg-neutral text-neutral-content rounded-full w-12">
-                  <span className="text-xl">AI</span>
+              <div className="avatar online h-full">
+                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img src={productByIdData[0]?.user?.image} />
                 </div>
               </div>
               <div>
-                <h1 className="font-bold">Sumo MX</h1>
+                <h1 className="font-bold">{productByIdData[0]?.user?.name}</h1>
                 <p>Online kemarin</p>
               </div>
 
               <button className="btn btn-active">Follow</button>
             </div>
-          </div>
-          <div>
-            <CartComp />
+            <div>
+              <CartComp product={productByIdData[0]} />
+            </div>
           </div>
         </div>
       </div>

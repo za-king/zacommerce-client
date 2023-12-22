@@ -1,12 +1,10 @@
 import React from "react";
 
-const CardCategory = () => {
+const CardCategory = ({ category }: any) => {
   return (
-    <div className="stats shadow">
-      <div className="stat">
-        <div className="stat-title">Total Page Views</div>
-        <div className="stat-value">89,400</div>
-        <div className="stat-desc">21% more than last month</div>
+    <div className="card shadow-lg cursor-pointer">
+      <div className="card-body">
+        <div className="card-value font-bold text-xl">{category?.name}</div>
       </div>
     </div>
   );

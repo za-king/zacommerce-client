@@ -4,19 +4,18 @@ import Hero from "@/components/Hero";
 import Card from "@/components/Card";
 import CardCategory from "@/components/CardCategory";
 import useProductHook from "@/hook/useProductHook";
+import useCategoryHook from "@/hook/useCategory.hook";
 export default function Home() {
   const { productData } = useProductHook();
-
+  const { categoryData } = useCategoryHook();
   return (
     <Layout>
       <div className="min-h-screen lg:container my-12">
         <Hero />
         <div className="flex justify-between w-full my-12">
-          <CardCategory />
-          <CardCategory />
-          <CardCategory />
-          <CardCategory />
-          <CardCategory />
+          {categoryData.map((category: any, index: number) => {
+            return <CardCategory category={category} key={index} />;
+          })}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6">
           {productData.map((product: any, index: number) => {

@@ -124,8 +124,6 @@ const cartReducer = (state: StateApp, action: AppActions): any => {
 
 export const CartContext = createContext(initialState);
 
-type adToCart = (product: IProduct) => any;
-
 export default function CartProvider({ children }: any) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 

@@ -23,10 +23,7 @@ const CardCart = ({ product }: any) => {
   return (
     <div className="card card-side bg-base-100 shadow-xl m-2" key={product.id}>
       <figure>
-        <img
-          src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-          alt="Movie"
-        />
+        <img src={product.image} alt="Movie" />
       </figure>
       <div className="card-body">
         <div className="card-actions justify-end">
