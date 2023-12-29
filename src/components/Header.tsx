@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import Theme from "@/theme/Theme";
 import { useContext } from "react";
 import { CartContext } from "@/context/cart.context";
+import Search from "./Search";
 
 const Header = () => {
   const { quantity, total } = useContext(CartContext);
@@ -66,11 +67,12 @@ const Header = () => {
       </div>
 
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl" href="/">
-          zacommerce
-        </a>
+        <button className="btn btn-ghost text-xl">zacommerce</button>
       </div>
       <div className="flex-none">
+        <div>
+          <Search />
+        </div>
         <div>
           <Theme />
         </div>

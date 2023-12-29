@@ -5,7 +5,7 @@ import { SERVER_URL } from "../api/url";
 const useProductHook = () => {
   const [productData, setProductData] = useState<any>([]);
   const [productByIdData, setProductByIdData] = useState<any | null>({});
-
+  const [productBySearchData, setProductBySearchData] = useState<any>([]);
   const useGetAllProduct = async () => {
     try {
       const response = await fetch(`${SERVER_URL}/product`);
@@ -25,10 +25,26 @@ const useProductHook = () => {
       console.log(error);
     }
   };
+
+  const useGetBySearchProduct = async (name: any) => {
+    try {
+      const response = await fetch(`${SERVER_URL}/product/search?name=${name}`);
+      const jsonResponese = await response.json();
+      setProductBySearchData(jsonResponese.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     useGetAllProduct();
   }, []);
-  return { productData, productByIdData, useGetByIdProduct };
+  return {
+    productData,
+    productByIdData,
+    productBySearchData,
+    useGetByIdProduct,
+    useGetBySearchProduct,
+  };
 };
 
 export default useProductHook;

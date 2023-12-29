@@ -4,6 +4,7 @@ import { SERVER_URL } from "@/api/url";
 
 const useCategoryHook = () => {
   const [categoryData, setCategoryData] = useState<any>([]);
+  const [productByCategoryData, setProductByCategoryData] = useState<any>([]);
   const getAllCategory = async () => {
     try {
       const response = await fetch(`${SERVER_URL}/category`);
@@ -14,10 +15,20 @@ const useCategoryHook = () => {
     }
   };
 
+  const getProductByCategory = async (url: string) => {
+    try {
+      const response = await fetch(`${SERVER_URL}${url}`);
+      const jsonResponese = await response.json();
+      setProductByCategoryData(jsonResponese.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getAllCategory();
   }, []);
-  return { categoryData };
+  return { categoryData, productByCategoryData, getProductByCategory };
 };
 
 export default useCategoryHook;

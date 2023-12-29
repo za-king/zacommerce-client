@@ -3,7 +3,6 @@ import { useContext, useEffect } from "react";
 import { CartContext } from "@/context/cart.context";
 const CartComp = ({ product }: any): any => {
   const { addToCart }: any = useContext(CartContext);
-  console.log(product);
 
   const handleAddToCart = async () => {
     await addToCart(product);
