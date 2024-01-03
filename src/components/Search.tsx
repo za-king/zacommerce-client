@@ -3,13 +3,17 @@ import React, { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import useProductHook from "@/hook/useProductHook";
 import { useRouter } from "next/navigation";
+import Loading from "./Loading";
 const Search = () => {
   const { useGetBySearchProduct, productBySearchData } = useProductHook();
   const [searchName, setSearchName] = useState<string | null>();
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
+    setLoading(true);
     useGetBySearchProduct(searchName);
+    setLoading(false);
   }, [searchName]);
 
   return (
@@ -35,19 +39,25 @@ const Search = () => {
             }}
           />
           <div className="my-4">
-            {productBySearchData.map((product: any) => {
-              return (
-                <div
-                  className="shadow p-2 rounded cursor-pointer"
-                  key={product.id}
-                  onClick={() => {
-                    router.push(`/product/${product.id}`);
-                  }}
-                >
-                  {product.name}
-                </div>
-              );
-            })}
+            {loading ? (
+              <p>loading</p>
+            ) : (
+              <div>
+                {productBySearchData.map((product: any) => {
+                  return (
+                    <div
+                      className="shadow p-2 rounded cursor-pointer"
+                      key={product.id}
+                      onClick={() => {
+                        router.push(`/product/${product.id}`);
+                      }}
+                    >
+                      {product.name}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
           <div className="modal-action">
             <form method="dialog">

@@ -1,13 +1,13 @@
 import { redirect } from "next/navigation";
+import { SERVER_URL } from "@/api/url";
 
-import Notification from "@/components/Notification";
 type UseLoginProp = {
   email: string;
   password: string;
 };
 
 const useLogin = async ({ email, password }: UseLoginProp) => {
-  const response = await fetch("http://localhost:4000/user/login", {
+  const response = await fetch(`${SERVER_URL}/user/login`, {
     method: "POST",
     credentials: "include",
     headers: {
