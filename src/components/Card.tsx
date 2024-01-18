@@ -16,7 +16,6 @@ const Card = ({ product }: any) => {
           alt="Shoes"
           onClick={() => {
             router.push(`/product/${product.id}`);
-            handleAddToCart();
           }}
         />
       </figure>

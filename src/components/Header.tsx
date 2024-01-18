@@ -1,16 +1,21 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Theme from "@/theme/Theme";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "@/context/cart.context";
+import { LoginContext } from "@/context/login.context";
 import Search from "./Search";
+import Link from "next/link";
+import Profile from "./Profile";
 
 const Header = () => {
   const { quantity, total } = useContext(CartContext);
 
+  const [user, setUser]: any = useContext(LoginContext);
   const router = useRouter();
+
   return (
-    <div className="navbar bg-base-100 border-b-2 fixed z-50 top-0">
+    <div className="navbar bg-base-100 border-b-2 ">
       <div className="flex-none md:hidden">
         <div className="drawer z-50">
           <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -67,7 +72,14 @@ const Header = () => {
       </div>
 
       <div className="flex-1">
-        <button className="btn btn-ghost text-xl">zacommerce</button>
+        <button
+          className="btn btn-ghost text-xl"
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          zacommerce
+        </button>
       </div>
       <div className="flex-none">
         <div>
@@ -115,34 +127,15 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-              />
-            </div>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between" href="/profile">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
+        <div>
+          {false ? (
+            <Profile />
+          ) : (
+            <Link href={"/login"}>
+              <div className="mx-4">Login</div>
+            </Link>
+          )}
+          <Profile />
         </div>
       </div>
     </div>

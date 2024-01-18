@@ -1,10 +1,12 @@
+"use client";
 import Layout from "@/components/Layout";
 import Image from "next/image";
-
+import { useEffect } from "react";
 function Profile() {
+  useEffect;
   return (
     <Layout>
-      <div className="h-screen container py-12 ">
+      <div className="h-screen container py-24 ">
         <div className=" border-2 bg- rounded-lg shadow-lg">
           <div className="text-xl text-center font-bold my-4">Profile</div>
 

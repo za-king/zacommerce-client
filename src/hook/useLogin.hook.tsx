@@ -19,10 +19,19 @@ const useLogin = async ({ email, password }: UseLoginProp) => {
     }),
   });
   const data = await response.json();
-
-  if (!data.accessToken) {
-    redirect("/login");
-  }
+  return data;
 };
 
-export { useLogin };
+const useLogout = async () => {
+  const response = await fetch(`${SERVER_URL}/user/logout`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  sessionStorage.removeItem("user");
+};
+
+export { useLogin, useLogout };

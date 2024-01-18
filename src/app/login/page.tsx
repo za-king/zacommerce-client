@@ -3,13 +3,22 @@ import Layout from "@/components/Layout";
 import { useState } from "react";
 import { useLogin } from "../../hook/useLogin.hook";
 import { useRouter } from "next/navigation";
-
-function page() {
-  const [email, setEmail] = useState<string>("test2@gmail.com");
-  const [password, setPassword] = useState<string>("zaky1234");
+import { useContext, useEffect } from "react";
+import { LoginContext } from "@/context/login.context";
+function Login() {
+  const [email, setEmail] = useState<string>("userbaru@gmail.com");
+  const [password, setPassword] = useState<string>("userbaru");
+  const [user, setUser]: any = useContext(LoginContext);
   const router = useRouter();
-  const handleClickLogin = () => {
-    useLogin({ email, password });
+  const handleClickLogin = async () => {
+    useLogin({ email, password }).then((res) => {
+      if (res.accessToken) {
+        setUser(res);
+        console.log(res);
+      } else {
+        console.log(res.error);
+      }
+    });
   };
   return (
     <Layout>
@@ -28,15 +37,20 @@ function page() {
                 className="input input-bordered w-full max-w-xs"
               />
             </form>
-            <button className="btn btn-neutral" onClick={handleClickLogin}>
+            <button
+              className="btn btn-neutral"
+              onClick={() => {
+                handleClickLogin();
+              }}
+            >
               <span className="loading loading-spinner"></span>
               Login
             </button>
 
-            <button className="btn">
+            {/* <button className="btn">
               <span className="loading loading-spinner"></span>
               signin with google
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -44,4 +58,4 @@ function page() {
   );
 }
 
-export default page;
+export default Login;

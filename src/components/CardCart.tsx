@@ -2,7 +2,7 @@
 import { CartContext } from "@/context/cart.context";
 import { useContext } from "react";
 
-const CardCart = ({ product }: any) => {
+const CardCart = ({ product, index, showButton }: any) => {
   const { decreaseCart, addToCart, removeFromCart }: any =
     useContext(CartContext);
 
@@ -28,7 +28,7 @@ const CardCart = ({ product }: any) => {
       <div className="card-body">
         <div className="card-actions justify-end">
           <button
-            className="btn btn-square btn-sm"
+            className={`btn btn-square btn-sm ${showButton}`}
             onClick={handleRemoveFromCart}
           >
             <svg
@@ -49,7 +49,7 @@ const CardCart = ({ product }: any) => {
         </div>
         <h2 className="card-title">New movie is released!</h2>
         <p>Click the button to watch on Jetflix app.</p>
-        <div className="card-actions justify-end">
+        <div className={`card-actions justify-end ${showButton}`}>
           <button className="btn btn-primary" onClick={handleDecreaseCart}>
             -
           </button>

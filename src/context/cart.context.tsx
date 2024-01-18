@@ -128,13 +128,15 @@ export default function CartProvider({ children }: any) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const addToCart = (product: IProduct) => {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: product,
-    });
-    getTotals();
-
-    return;
+    if (false) {
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: product,
+      });
+      getTotals();
+    } else {
+      alert("login firts");
+    }
   };
 
   const decreaseCart = (product: IProduct) => {
